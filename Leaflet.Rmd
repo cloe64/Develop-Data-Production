@@ -1,0 +1,36 @@
+---
+title: "University of IOWA"
+author: "Wen Che"
+date: "August 17, 2017"
+output: 
+  html_document:
+      keep_md: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Leaflet
+
+I tried to map out certain University of Iowa campus locations around Iowa city. First I created multiple markers with data frame with columns of lat and lng for latitude and longitude.I also customized text pop ups with valid URL which appears when you click on the marker.
+
+```{r cars}
+library(leaflet)
+iowaLatLong <- data.frame(
+  lat = c(41.664468, 41.657515, 41.660094, 41.664326),
+  lng = c(-91.542444, -91.542787, -91.536867, -91.535773))
+iowaSites<-c(
+  "<a href='https://www.public-health.uiowa.edu/biostat/'>College of Public Health</a>",
+  "<a href='https://law.uiowa.edu/'>College of Law</a>",
+  "<a href='https://www.engineering.uiowa.edu/'>College of Engineering</a>",
+  "<a href='https://admissions.uiowa.edu/visit-campus/'>Admission Vistor Center</a>"
+  )
+iowaLatLong %>% 
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(popup = iowaSites) %>%
+  addCircleMarkers()
+
+```
+
